@@ -1,5 +1,6 @@
 <?php
-class Task {
+class Task
+{
     private $description;
 
     function __construct($description)
@@ -7,11 +8,13 @@ class Task {
         $this->description = $description;
     }
 
-    function setDescription($new_description){
+    function setDescription($new_description)
+    {
         $this->description = (string) $new_description;
     }
 
-    function getDescription(){
+    function getDescription()
+    {
         return $this->description;
     }
 
@@ -24,10 +27,10 @@ class Task {
     {
         return $_SESSION['list_of_tasks'];
     }
+
     static function deleteAll()
     {
-        $_SESSION['list_of_tasks']= array();
+        $_SESSION['list_of_tasks'] = array();
     }
-
 }
 ?>

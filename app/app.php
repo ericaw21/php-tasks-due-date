@@ -5,12 +5,11 @@
 
     session_start();
 
-    if (empty($SESSION['list_of_tasks'])) {
-        $_SESSION['list_of_tasks'] = array ();
+    if (empty($_SESSION['list_of_tasks'])) {
+        $_SESSION['list_of_tasks'] = array();
     }
 
     $app = new Silex\Application();
-
 
     $app->get("/", function() {
 
@@ -30,12 +29,12 @@
         }
 
         $output .= "
-        <form action='/tasks' method='post'>
-            <label for='description'>Task Description</label>
-            <input id='description' name='description' type='text'>
+            <form action='/tasks' method='post'>
+                <label for='description'>Task Description</label>
+                <input id='description' name='description' type='text'>
 
-            <button type='submit'>Add task</button>
-        </form>
+                <button type='submit'>Add task</button>
+            </form>
         ";
 
         $output .= "
@@ -43,6 +42,7 @@
                 <button type='submit'>Clear</button>
             </form>
         ";
+
 
         return $output;
     });
@@ -66,6 +66,7 @@
             <p><a href='/'>Home</a></p>
         ";
     });
+
 
     return $app;
 ?>
