@@ -4,6 +4,8 @@
     require_once __DIR__."/../src/Task.php";
     require_once __DIR__."/../src/Category.php";
 
+
+
     $app = new Silex\Application();
 
     $server = 'mysql:host=localhost:8889;dbname=to_do';
@@ -16,6 +18,7 @@
     ));
 
     $app->get("/", function() use ($app) {
+
         return $app['twig']->render('index.html.twig', array('tasks' => Task::getAll()));
     });
 
@@ -31,16 +34,24 @@
         $category = new Category($_POST['name']);
         $category->save();
         return $app['twig']->render('categories.html.twig', array('categories' => Category::getAll()));
+=======
+        return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
+>>>>>>> 8febc119ac5113a5816e65bfec2f34e95186cd32
     });
 
     $app->post("/tasks", function() use ($app) {
         $task = new Task($_POST['description']);
         $task->save();
+<<<<<<< HEAD
         return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
+=======
+        return $app['twig']->render('create_task.html.twig', array('newtask' => $task));
+>>>>>>> 8febc119ac5113a5816e65bfec2f34e95186cd32
     });
 
     $app->post("/delete_tasks", function() use ($app) {
         Task::deleteAll();
+<<<<<<< HEAD
         return $app['twig']->render('index.html.twig');
     });
 
@@ -48,6 +59,11 @@
         Category::deleteAll();
         return $app['twig']->render('index.html.twig');
     });
+=======
+        return $app['twig']->render('delete_tasks.html.twig');
+    });
+
+>>>>>>> 8febc119ac5113a5816e65bfec2f34e95186cd32
 
     return $app;
 ?>
