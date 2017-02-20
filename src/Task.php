@@ -1,43 +1,49 @@
 <?php
-class Task
-{
-    private $description;
-
-    function __construct($description)
+    class Task
     {
-        $this->description = $description;
-    }
+        private $description;
+        private $id;
 
-    function setDescription($new_description)
-    {
-        $this->description = (string) $new_description;
-    }
-
-    function getDescription()
-    {
-        return $this->description;
-    }
-
-    function save()
-    {
-        $GLOBALS['DB']->exec("INSERT INTO tasks (description) VALUES ('{$this->getDescription()}');");
-    }
-
-    static function getAll()
-    {
-        $returned_tasks = $GLOBALS['DB']->query("SELECT * FROM tasks;");
-        $tasks = array();
-        foreach($returned_tasks as $task) {
-            $description = $task['description'];
-            $new_task = new Task($description);
-            array_push($tasks, $new_task);
+        function __construct($description, $id = null )
+        {
+            $this->description = $description;
+            $this->id = $id;
         }
-        return $tasks;
-    }
 
-    static function deleteAll()
-    {
-        $_SESSION['list_of_tasks'] = array();
+        function setDescription($new_description)
+        {
+            $this->description = (string) $new_description;
+        }
+
+        function getDescription()
+        {
+            return $this->description;
+        }
+        function getId()
+        {
+            return $this->id;
+        }
+
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO tasks (description) VALUES ('{$this->getDescription()}');");
+        }
+
+        static function getAll()
+        {
+            $returned_tasks = $GLOBALS['DB']->query("SELECT * FROM tasks;");
+            $tasks = array();
+            foreach($returned_tasks as $task) {
+                $description = $task['description'];
+                $new_task = new Task($description);
+                array_push($tasks, $new_task);
+            }
+            return $tasks;
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM tasks;");
+        }
     }
-}
 ?>
