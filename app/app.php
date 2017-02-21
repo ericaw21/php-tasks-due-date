@@ -19,7 +19,7 @@
 
     $app->get("/", function() use ($app) {
 
-        return $app['twig']->render('index.html.twig', array('tasks' => Task::getAll()));
+        return $app['twig']->render('index.html.twig', array('categories' => Category::getAll()));
     });
 
     $app->get("/tasks", function() use ($app) {
@@ -34,36 +34,28 @@
         $category = new Category($_POST['name']);
         $category->save();
         return $app['twig']->render('categories.html.twig', array('categories' => Category::getAll()));
-=======
-        return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
->>>>>>> 8febc119ac5113a5816e65bfec2f34e95186cd32
+    });
+
+    /// NOTE notice that function is receiving the parameter $id and that it is called in brackets in the route!!! WE ASSUME PENDING ANY EXPLANATION.
+    $app->get("/categories/{id}", function($id) use ($app){
+        $category = Category::find($id);
+        return $app['twig']->render('category.html.twig', array('category' => $category, 'tasks' => $category->getTasks()));
     });
 
     $app->post("/tasks", function() use ($app) {
-        $task = new Task($_POST['description']);
+        $description = $_POST['description'];
+        $category_id = $_POST['category_id'];
+        $task = new Task($description, $id = null, $category_id);
         $task->save();
-<<<<<<< HEAD
-        return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
-=======
-        return $app['twig']->render('create_task.html.twig', array('newtask' => $task));
->>>>>>> 8febc119ac5113a5816e65bfec2f34e95186cd32
+        $category = Category::find($category_id);
+        return $app['twig']->render('category.html.twig', array('category' => $category, 'tasks' => $category->getTasks()));
     });
 
     $app->post("/delete_tasks", function() use ($app) {
         Task::deleteAll();
-<<<<<<< HEAD
-        return $app['twig']->render('index.html.twig');
-    });
-
-    $app->post("/delete_categories", function() use ($app) {
-        Category::deleteAll();
-        return $app['twig']->render('index.html.twig');
-    });
-=======
         return $app['twig']->render('delete_tasks.html.twig');
     });
 
->>>>>>> 8febc119ac5113a5816e65bfec2f34e95186cd32
 
     return $app;
 ?>
