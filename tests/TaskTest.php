@@ -170,5 +170,30 @@
             $this->assertEquals($test_task, $result);
         }
 
+        function test_sort()
+        {
+            $name = "Home stuff";
+            $id = null;
+            $test_category = new Category($name, $id);
+            $test_category->save();
+
+            $description = "Wash the dog";
+            $due_date = "2017-02-21";
+            $category_id = $test_category->getId();
+            $test_task = new Task($description, $id, $category_id, $due_date);
+            $test_task->save();
+
+            $description2 = "Water the lawn";
+            $due_date2 = "2017-01-21";
+            $test_task2 = new Task($description2, $id, $category_id, $due_date2);
+            $test_task2->save();
+
+            $result = Task::getAll();
+
+
+            $this->assertEquals([$test_task2, $test_task], $result);
+
+        }
+
     }
 ?>
