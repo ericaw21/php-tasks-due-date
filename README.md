@@ -1,24 +1,12 @@
-# _Job-Post_
+# _PHP Tasks Due Date Exercise_
 
-#### _User can post a job._
-
-#### By _** Sarah Leahy and Carlos Munoz Kampff**_
+#### By _** Erica Wright & Zach Swanson**_
 
 ## Description
 
-__
-
-
-| Behavior                                              |   Input example   |  Output example |
-|-------------------------------------------------------|:-----------------:|:---------------:|
-|1)User inputs a job opening.                           | "Developer", "Write amazing code."| "Developer", "Write amazing code."|
-
-
-## Specifications
-
+Practice with PHO, mySQL, and join tables to implement CRUD functionality.
 
 ## Setup/Installation Requirements
-
 
 * _Clone repository from github._
 * _Initiate a php server in terminal within the project directory._
@@ -45,4 +33,4 @@ _No support._
 
 *MIT*
 
-Copyright (c) 2017 **_Sarah Leahy and Carlos Munoz Kampff_**
+Copyright (c) 2017 **_Erica Wright & Zach Swanson_**
